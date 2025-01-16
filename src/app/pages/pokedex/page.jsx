@@ -1,17 +1,21 @@
 "use client"
 import Webcam from "react-webcam"
 import { useRef } from "react"
+import useCaptureImageStore from "@/app/store/captureImageStore";
+import { useRouter } from 'next/navigation';
 
 
 
 export default function Pokedex()
 {
- 
     let webcam = useRef(null)
+    let router = useRouter()
+    let setImg = useCaptureImageStore((state) => state.setImg)
 
     let captureImage = () => {
         let img = webcam.current.getScreenshot()
-        console.log(img)
+        setImg(img)
+        router.push("/pages/pokemonData")
     }
     
 
@@ -34,7 +38,7 @@ export default function Pokedex()
 
                 <br />
                 <div className='container m-auto border ring-4 ring-black rounded shadow-lg bg-white flex justify-center place-items-center w-10/12 h-24 ' onClick={captureImage}>
-                    <h1 className="text-3xl text-yellow-500  tracking-wider font-extrabold" style={{  textShadow: "-2px -2px 0 blue, 2px -2px 0 blue, -2px 2px 0 blue, 2px 2px 0 blue", letterSpacing : "4px", transform : "scale(1)"}}>capture image</h1>
+                    <h1 className="text-3xl text-yellow-500  tracking-wider font-extrabold" style={{  textShadow: "-2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black", letterSpacing : "4px", transform : "scale(1)"}}>capture image</h1>
                 </div>
                 <br />
                 <hr />
