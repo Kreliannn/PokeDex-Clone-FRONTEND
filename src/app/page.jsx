@@ -15,7 +15,7 @@ export default function Home() {
         className='w-screen h-52 m-auto '  
       />
 
-      <button className=' rounded-full  text-lg  absolute bg-cover bg-center bg-no-repeat active:scale-125 bg-yellow-' style={{bottom : "6%", left : "-3%", padding : "16%", backgroundImage : "url('/run_button.png')"}}> </button>    
+      <button className=' rounded-full  text-lg  absolute bg-cover bg-center bg-no-repeat active:scale-125 bg-yellow-' style={{bottom : "5%", left : "0%", padding : "16%", backgroundImage : "url('/run_button.png')"}}> </button>    
     </div>
   );
 }
