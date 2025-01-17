@@ -5,13 +5,16 @@ import { useQuery } from "@tanstack/react-query";
 export default  function PokemonContainer()
 {
     
-    let {data } = useQuery({
+    let {data, isError, isLoading } = useQuery({
         queryKey : ['poke'],
-        queryFn : () => axios.get("http://localhost:4000/getSprite")
+        queryFn : () => axios.get("https://pokedex-backend-l6xn.onrender.com/getSprite")
     })
     
     console.log(data?.data)
-    
+
+    if(isError) return <h1> error </h1>
+    if(isLoading) return <h1> loading/........... </h1>
+
     return(
         <div className="m-auto bg-white flex flex-wrap rounded justify-center mt-3 w-11/12 border h-36 overflow-scroll" >
             

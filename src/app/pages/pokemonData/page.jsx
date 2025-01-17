@@ -27,7 +27,7 @@ export default function PokemonData() {
     const [error, setError] = useState(false)  
     
     const { mutate } = useMutation({
-        mutationFn: (data) => axios.post("http://localhost:4000/getPokemonData", data),
+        mutationFn: (data) => axios.post("https://pokedex-backend-l6xn.onrender.com/getPokemonData", data),
         onSuccess: (response) => {
             console.log(response.data)
             setPokemonData(response.data)
