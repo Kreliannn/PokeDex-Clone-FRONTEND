@@ -11,6 +11,8 @@ import PokemonDescription from "./components/pokemonDescription"
 import PokemonChatBot from "./components/pokemonChatBot"
 import ExitButton from "./components/exitButton"
 
+import LoadingPage from "./components/laoding"
+import ErrorPage from "./components/error"
 
 export default function PokemonData() {
     let captureImg = useCaptureImageStore((state) => state.img)
@@ -20,6 +22,7 @@ export default function PokemonData() {
    
 
     const [loading, setLoading] = useState(false)  
+    const [error, setError] = useState(false)  
     
     const { mutate } = useMutation({
         mutationFn: (data) => axios.post("http://localhost:4000/getPokemonData", { img: data }),
@@ -27,21 +30,24 @@ export default function PokemonData() {
             console.log(response.data)
             setPokemonData(response.data)
             setLoading(false)  
+            setError(false)
         },
         onError: (err) => {
             console.log(err)
             setLoading(false)  
+            setError(true)
         }
     })
 
     useEffect(() => {
         if (captureImg) {
             setLoading(true)  
-            mutate("pikachu")
+            mutate(captureImg)
         }
     }, [captureImg, mutate])
 
-    if (loading) return <h1>loading..............</h1>
+    if (loading) return <LoadingPage />
+    if (error) return <ErrorPage />
 
     return (
     <div className='bg-white'>

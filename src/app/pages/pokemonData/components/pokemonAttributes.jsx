@@ -1,5 +1,5 @@
 import usePokemonDataStore from "@/app/store/pokemonDataStore"
-
+import Type from "./type"
 
 export default function PokemonAttributes()
 {
@@ -19,7 +19,7 @@ export default function PokemonAttributes()
             <div className="w-80  m-auto  flex justify-start ">
                 {
                     pokemonData?.types.map((type, index) => {
-                        return <span  key={index} className="rounded-full bg-gray-500 text-white ring-2 ring-black m-1 mt-2 mb-2 px-2 text-xs"> {type} </span>
+                       return <Type key={index} type={type} />
                     }) 
                 }
             </div>

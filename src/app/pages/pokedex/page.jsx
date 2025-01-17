@@ -3,7 +3,7 @@ import Webcam from "react-webcam"
 import { useRef } from "react"
 import useCaptureImageStore from "@/app/store/captureImageStore";
 import { useRouter } from 'next/navigation';
-
+import PokemonContainer from "./components/pokemonContainer";
 
 
 export default function Pokedex()
@@ -42,9 +42,11 @@ export default function Pokedex()
                 </div>
                 <br />
                 <hr />
-            </div>
 
-         
+                <PokemonContainer />
+            </div>
+            
+                        
         </div>
     )
 }
