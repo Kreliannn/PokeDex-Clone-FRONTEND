@@ -12,7 +12,7 @@ export default function PokemonChatBot()
     let [message, setMessage] = useState("")
 
     let mutation = useMutation({
-        mutationFn : (data) => axios.post("https://pokedex-backend-l6xn.onrender.com", { prompt : data}),
+        mutationFn : (data) => axios.post("https://pokedex-backend-l6xn.onrender.com/chatBot", { prompt : data}),
         onSuccess : (response) => setBot(response.data),
         onError : (err) => alert(err.response.data)
     })
