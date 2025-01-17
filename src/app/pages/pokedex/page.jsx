@@ -37,7 +37,7 @@ export default function Pokedex()
             <div className='w-dvh h-2/5' style={{backgroundImage : "url('/pokedexBottom.jpg')"}}>
 
                 <br />
-                <div className='container m-auto border ring-4 ring-black rounded shadow-lg bg-white flex justify-center place-items-center w-10/12 h-24 ' onClick={captureImage}>
+                <div className='container m-auto border ring-4 ring-black rounded shadow-lg bg-gradient-to-r from-red-500 via-red-600 to-red-700 flex justify-center place-items-center w-10/12 h-24 ' onClick={captureImage}>
                     <h1 className="text-3xl text-yellow-500  tracking-wider font-extrabold" style={{  textShadow: "-2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black", letterSpacing : "4px", transform : "scale(1)"}}>capture image</h1>
                 </div>
                 <br />
