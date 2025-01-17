@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 let useFormData = create((set) => ({
     formData : null,
-    setFormData : (data) => set({img : data})
+    setFormData : (data) => set({formData : data})
 }))
 
-export default useCaptureImageStore
+export default useFormData

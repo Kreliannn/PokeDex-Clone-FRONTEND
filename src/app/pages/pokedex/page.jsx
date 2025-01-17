@@ -6,20 +6,15 @@ import { useRouter } from 'next/navigation';
 import PokemonContainer from "./components/pokemonContainer";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-
+import useFormData from "@/app/store/formDataStore";
 export default function Pokedex()
 {
     let webcam = useRef(null)
     let router = useRouter()
     let setImg = useCaptureImageStore((state) => state.setImg)
+    let setFormData = useFormData((state) => state.setFormData)
 
     let [ file, setFile ] = useState("")
-
-    let mutation = useMutation({
-        mutationFn : (data) => axios.post("http://localhost:4000/upload", data),
-        onSuccess : (response) => console.log(response.data)
-    })
-    
 
     let captureImage = () => {
 
@@ -41,25 +36,13 @@ export default function Pokedex()
 
         formData.append("file", file)
 
-        mutation.mutate(formData)
+        setFormData(formData)
 
-        //let img = webcam.current.getScreenshot()
-        //setImg(img)
-        //router.push("/pages/pokemonData")
+        setImg(imageSrc)
+        router.push("/pages/pokemonData")
     }
 
-    /*
-                    <Webcam 
-                        ref={webcam}
-                        width="100%"
-                        height="100%"
-                        screenshotFormat="image/png"
-                        videoConstraints={{
-                            facingMode : "environment"
-                        }}
-                    />
-
-    */
+   
     
 
     return(

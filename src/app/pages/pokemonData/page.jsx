@@ -1,5 +1,6 @@
 "use client"
 import useCaptureImageStore from "@/app/store/captureImageStore"
+import useFormData from "@/app/store/formDataStore"
 import { useState, useEffect } from "react"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
@@ -16,10 +17,11 @@ import ErrorPage from "./components/error"
 
 export default function PokemonData() {
     let captureImg = useCaptureImageStore((state) => state.img)
+    let formData = useFormData((state) => state.formData)
     let pokemonData = usePokemonDataStore((state) => state.pokemonData)
     let setPokemonData = usePokemonDataStore((state) => state.setPokemonData)
 
-   console.log(captureImg)
+   console.log(formData)
 
     const [loading, setLoading] = useState(false)  
     const [error, setError] = useState(false)  
@@ -40,11 +42,11 @@ export default function PokemonData() {
     })
 
     useEffect(() => {
-        if (captureImg) {
+        if (formData) {
             setLoading(true)  
-            mutate(captureImg)
+            mutate(formData)
         }
-    }, [captureImg, mutate])
+    }, [formData, mutate])
 
     if (loading) return <LoadingPage />
     if (error) return <ErrorPage />
