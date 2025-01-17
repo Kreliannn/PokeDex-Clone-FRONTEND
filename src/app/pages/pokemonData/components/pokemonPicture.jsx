@@ -10,11 +10,11 @@ export default function PokemonPicture()
        
         <div className="flex h-52 gap-2 m-2 mt-2">
             <div className="w-[30%] bg-gray-600 border border-black shadow-lg grid grid-cols-1 ">
-                <div className=' bg-red-500 m-2 border border-black  shadow bg-cover bg-center bg-no-repeat h-14'>
+                <div className=' bg-red-500 m-2 border border-black  shadow bg-cover bg-center bg-no-repeat h-24'>
                     <img src={captureImg} alt="" style={{width : "100%", height : "100%"}} />
                 </div>
 
-                <div className='border border-black shadow  m-2 bg-cover bg-center bg-no-repeat h-14' style={{backgroundImage : "url('/pokemonbg2.jpg"}}>
+                <div className='border border-black shadow  m-2 bg-cover bg-center bg-no-repeat h-24' style={{backgroundImage : "url('/pokemonbg2.jpg"}}>
                     <img src={pokemonData?.sprite} alt="" style={{width : "100%", height : "100%"}}  />
                 </div>
             </div>

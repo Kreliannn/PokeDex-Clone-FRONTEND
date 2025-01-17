@@ -12,7 +12,7 @@ export default function PokemonChatBot()
     let [message, setMessage] = useState("")
 
     let mutation = useMutation({
-        mutationFn : (data) => axios.post("http://localhost:4000/chatBot", { prompt : data}),
+        mutationFn : (data) => axios.post("https://pokedex-backend-l6xn.onrender.com", { prompt : data}),
         onSuccess : (response) => setBot(response.data),
         onError : (err) => alert(err.response.data)
     })
@@ -20,7 +20,7 @@ export default function PokemonChatBot()
     let submit = () => {
         let prompt = `act as pokedex and answer the question about ${pokemonData.name} make it simple and short. the question is ${message}`
         mutation.mutate(prompt)
-        setBot("thinking...........")
+        setBot("please  wait...........")
     }
  
     return(
