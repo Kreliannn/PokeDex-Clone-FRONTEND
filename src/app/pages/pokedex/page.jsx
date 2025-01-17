@@ -1,10 +1,11 @@
 "use client"
 import Webcam from "react-webcam"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import useCaptureImageStore from "@/app/store/captureImageStore";
 import { useRouter } from 'next/navigation';
 import PokemonContainer from "./components/pokemonContainer";
-
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 export default function Pokedex()
 {
@@ -12,25 +13,68 @@ export default function Pokedex()
     let router = useRouter()
     let setImg = useCaptureImageStore((state) => state.setImg)
 
+    let [ file, setFile ] = useState("")
+
+    let mutation = useMutation({
+        mutationFn : (data) => axios.post("http://localhost:4000/upload", data),
+        onSuccess : (response) => console.log(response.data)
+    })
+    
+
     let captureImage = () => {
-        let img = webcam.current.getScreenshot()
-        setImg(img)
-        router.push("/pages/pokemonData")
+
+        const imageSrc = webcam.current.getScreenshot();
+
+        // Convert the Base64 string to binary
+        const byteString = atob(imageSrc.split(",")[1]);
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const uintArray = new Uint8Array(arrayBuffer);
+
+        for (let i = 0; i < byteString.length; i++) {
+        uintArray[i] = byteString.charCodeAt(i);
+        }
+
+        
+        const file = new File([uintArray], "image.jpg", { type: "image/jpeg" });
+
+        const formData = new FormData()
+
+        formData.append("file", file)
+
+        mutation.mutate(formData)
+
+        //let img = webcam.current.getScreenshot()
+        //setImg(img)
+        //router.push("/pages/pokemonData")
     }
+
+    /*
+                    <Webcam 
+                        ref={webcam}
+                        width="100%"
+                        height="100%"
+                        screenshotFormat="image/png"
+                        videoConstraints={{
+                            facingMode : "environment"
+                        }}
+                    />
+
+    */
     
 
     return(
         <div className='w-dvh h-dvh bg-red-200 '>
             <div className='w-dvh h-3/5 bg-cover bg-center bg-no-repeat'  style={{backgroundImage : "url('/pokedexTop.jpg')"}}>
                 <div className='bg-blue-500 m-auto relative  rounded overflow-hidden' style={{width : "96%", height : "80%", top: "22%"}}>
-                    <Webcam 
+                <Webcam 
                         ref={webcam}
                         width="100%"
                         height="100%"
+                        screenshotFormat="image/jpeg"
                         videoConstraints={{
                             facingMode : "environment"
-                        }}
-                    />
+                        }} 
+                />
                 </div>
             </div>
 

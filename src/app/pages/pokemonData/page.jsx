@@ -19,13 +19,13 @@ export default function PokemonData() {
     let pokemonData = usePokemonDataStore((state) => state.pokemonData)
     let setPokemonData = usePokemonDataStore((state) => state.setPokemonData)
 
-   
+   console.log(captureImg)
 
     const [loading, setLoading] = useState(false)  
     const [error, setError] = useState(false)  
     
     const { mutate } = useMutation({
-        mutationFn: (data) => axios.post("http://localhost:4000/getPokemonData", { img: data }),
+        mutationFn: (data) => axios.post("http://localhost:4000/getPokemonData", data),
         onSuccess: (response) => {
             console.log(response.data)
             setPokemonData(response.data)
