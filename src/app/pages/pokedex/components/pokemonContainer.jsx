@@ -21,7 +21,7 @@ export default  function PokemonContainer()
             {
                 data?.data.map((obj, index) => {
                     return(
-                        <div key={index} className='w-screen border border-black h-24 flex justify-start items-center'> 
+                        <div key={index} className='w-screen border border-black h-24 flex justify-start items-center' style={{ backgroundColor : "whitesmoke"}}> 
                             <div className='h-24  w-24  bg-cover bg-center bg-no-repeat border border-black' style={{backgroundImage : "url('/pokemonbg2.jpg')"}}>
                                 <img src={obj.sprite} alt="" className='h-24  w-24'/>    
                             </div>
