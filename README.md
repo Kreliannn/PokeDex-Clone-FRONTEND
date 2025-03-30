@@ -1,6 +1,6 @@
 # 🔍 Pokédex Clone
 
-A Pokédex clone that allows users to **take a picture** of any Pokémon—whether an image, stuff toy, toys. it identify the **name, type, stats, description** of the pokemon. Users can also **ask questions** about the Pokémon for additional details.  
+A Pokédex clone that allows users to **take a picture** of any Pokémon whether an image, stuff toy, toys. it identify the **name, type, stats, description** of the pokemon. Users can also **ask questions** about the Pokémon for additional details.  
 
 ## ✨ Features  
 
